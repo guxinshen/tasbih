@@ -22,25 +22,55 @@ export default function Tasbih({ city }) {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: 30 }}>
-      <h1>Tasbih di {city}</h1>
+    <div style={{ maxWidth: 700, margin: "0 auto", padding: 20 }}>
+      
+      {/* SEO H1 */}
+      <h1>Tasbih Online di {city}</h1>
 
-      <div style={{ fontSize: 60 }}>{count}</div>
+      {/* 核心行为 */}
+      <div style={{ textAlign: "center", marginTop: 40 }}>
+        <div style={{ fontSize: 70, fontWeight: "bold" }}>{count}</div>
 
-      <button onClick={add} style={{ padding: 15 }}>
-        Tap Dzikir
-      </button>
+        <button
+          onClick={add}
+          style={{
+            padding: "15px 30px",
+            fontSize: 18,
+            background: "#0ea5e9",
+            color: "#fff",
+            border: "none",
+            borderRadius: 10
+          }}
+        >
+          Tap Dzikir
+        </button>
 
-      <br />
+        <div>
+          <button onClick={reset} style={{ marginTop: 15 }}>
+            Reset
+          </button>
+        </div>
+      </div>
 
-      <button onClick={reset} style={{ marginTop: 10 }}>
-        Reset
-      </button>
+      {/* SEO内容区（非常重要） */}
+      <section style={{ marginTop: 50 }}>
+        <h2>Apa itu Tasbih di {city}?</h2>
+        <p>
+          Tasbih digital gratis untuk Muslim di {city}. Gunakan untuk dzikir harian,
+          tanpa aplikasi, langsung di browser.
+        </p>
+
+        <h2>Manfaat</h2>
+        <ul>
+          <li>Membantu konsistensi dzikir</li>
+          <li>Gratis tanpa login</li>
+          <li>Bisa digunakan kapan saja di {city}</li>
+        </ul>
+      </section>
     </div>
   );
 }
 
-// SSR 获取 city 参数
 export async function getServerSideProps(context) {
   return {
     props: {
