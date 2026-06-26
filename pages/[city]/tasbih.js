@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { cities } from "@/lib/cities";
 
 export default function Tasbih({ city }) {
   const [count, setCount] = useState(0);
@@ -24,54 +25,46 @@ export default function Tasbih({ city }) {
   return (
     <div style={{ maxWidth: 700, margin: "0 auto", padding: 20 }}>
       
-      {/* SEO H1 */}
       <h1>Tasbih Online di {city}</h1>
 
-      {/* 核心行为 */}
       <div style={{ textAlign: "center", marginTop: 40 }}>
-        <div style={{ fontSize: 70, fontWeight: "bold" }}>{count}</div>
+        <div style={{ fontSize: 70 }}>{count}</div>
 
-        <button
-          onClick={add}
-          style={{
-            padding: "15px 30px",
-            fontSize: 18,
-            background: "#0ea5e9",
-            color: "#fff",
-            border: "none",
-            borderRadius: 10
-          }}
-        >
+        <button onClick={add} style={{ padding: 15 }}>
           Tap Dzikir
         </button>
 
-        <div>
-          <button onClick={reset} style={{ marginTop: 15 }}>
-            Reset
-          </button>
-        </div>
+        <button onClick={reset} style={{ marginLeft: 10 }}>
+          Reset
+        </button>
       </div>
 
-      {/* SEO内容区（非常重要） */}
-      <section style={{ marginTop: 50 }}>
-        <h2>Apa itu Tasbih di {city}?</h2>
-        <p>
-          Tasbih digital gratis untuk Muslim di {city}. Gunakan untuk dzikir harian,
-          tanpa aplikasi, langsung di browser.
-        </p>
-
-        <h2>Manfaat</h2>
-        <ul>
-          <li>Membantu konsistensi dzikir</li>
-          <li>Gratis tanpa login</li>
-          <li>Bisa digunakan kapan saja di {city}</li>
-        </ul>
-      </section>
     </div>
   );
 }
 
-export async function getServerSideProps(context) {
+/**
+ * ⭐ 关键：生成500个城市页面
+ */
+export async function getStaticPaths() {
+  const allCities = [
+    ...cities.tier1,
+    ...cities.tier2,
+    ...cities.tier3
+  ];
+
+  return {
+    paths: allCities.map((city) => ({
+      params: { city }
+    })),
+    fallback: false
+  };
+}
+
+/**
+ * ⭐ 关键：把 city 传入页面
+ */
+export async function getStaticProps(context) {
   return {
     props: {
       city: context.params.city
