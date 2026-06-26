@@ -1,5 +1,5 @@
 export const dynamic = "force-static";
-
+export const revalidate = 3600;
 import TasbihClient from "./TasbihClient";
 
 export async function generateMetadata({ params }: any) {
