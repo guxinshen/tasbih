@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import TasbihClient from "./TasbihClient";
 
 export async function generateMetadata({ params }: any) {
