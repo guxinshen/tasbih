@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { cities } from "../../lib/cities";
-
+const content = getCityContent(city);
 export default function Tasbih({ city }) {
   const [count, setCount] = useState(0);
 
