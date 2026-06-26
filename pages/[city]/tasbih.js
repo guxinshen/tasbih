@@ -23,25 +23,35 @@ export default function Tasbih({ city }) {
     localStorage.setItem(key, 0);
   };
 
-  return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: 20 }}>
-      
-      <h1>Tasbih Online di {city}</h1>
+return (
+  <div style={{ maxWidth: 700, margin: "0 auto", padding: 20 }}>
+    
+    <h1>Tasbih Online di {city}</h1>
 
-      <div style={{ textAlign: "center", marginTop: 40 }}>
-        <div style={{ fontSize: 70 }}>{count}</div>
+    {/* 🧠 content */}
+    <section style={{ marginTop: 20, marginBottom: 30 }}>
+      <p>{content.desc}</p>
+      <p>{content.habit}</p>
+      <p style={{ opacity: 0.7, fontStyle: "italic" }}>
+        {content.tone}
+      </p>
+    </section>
 
-        <button onClick={add} style={{ padding: 15 }}>
-          Tap Dzikir
-        </button>
+    {/* 🧮 tool */}
+    <div style={{ textAlign: "center", marginTop: 40 }}>
+      <div style={{ fontSize: 70 }}>{count}</div>
 
-        <button onClick={reset} style={{ marginLeft: 10 }}>
-          Reset
-        </button>
-      </div>
+      <button onClick={add} style={{ padding: 15 }}>
+        Tap Dzikir
+      </button>
 
+      <button onClick={reset} style={{ marginLeft: 10 }}>
+        Reset
+      </button>
     </div>
-  );
+
+  </div>
+);
 }
 
 /**
