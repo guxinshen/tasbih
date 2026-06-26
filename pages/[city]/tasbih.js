@@ -49,7 +49,26 @@ return (
         Reset
       </button>
     </div>
+<section style={{ marginTop: 50 }}>
+  <h3>Related Cities</h3>
 
+  <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+    {cities.tier1.slice(0, 10).map((c) => (
+      <a
+        key={c}
+        href={`/${c}/tasbih`}
+        style={{
+          padding: "6px 10px",
+          border: "1px solid #ddd",
+          borderRadius: 6,
+          textDecoration: "none"
+        }}
+      >
+        {c}
+      </a>
+    ))}
+  </div>
+</section>
   </div>
 );
 }
