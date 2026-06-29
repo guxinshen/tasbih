@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { cities } from "../../lib/cities";
 import { getCityContent } from "../../lib/cityContent";
+import Layout from "../../components/Layout";
 
 export default function Tasbih({ city }) {
   const content = getCityContent(city);
@@ -46,12 +47,16 @@ export default function Tasbih({ city }) {
 
   const relatedCities = getRelatedCities(city);
 
-  return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: 20 }}>
+return (
+  <Layout city={city}>
+    
+    <div style={{ maxWidth: 700, margin: "0 auto" }}>
       
-      <h1>Tasbih Online di {city}</h1>
+      <h1 style={{ textAlign: "center" }}>
+        Tasbih Online di {city}
+      </h1>
 
-      {/* 🧠 SEO内容区块 */}
+      {/* SEO内容 */}
       <section style={{ marginTop: 20, marginBottom: 30 }}>
         <p>{content.desc}</p>
         <p>{content.habit}</p>
@@ -60,20 +65,26 @@ export default function Tasbih({ city }) {
         </p>
       </section>
 
-      {/* 🧮 工具区 */}
+      {/* Counter UI */}
       <div style={{ textAlign: "center", marginTop: 40 }}>
-        <div style={{ fontSize: 70 }}>{count}</div>
+        <div style={{ fontSize: 80 }}>{count}</div>
 
-        <button onClick={add} style={{ padding: 15 }}>
+        <button
+          onClick={add}
+          style={btnStyle}
+        >
           Tap Dzikir
         </button>
 
-        <button onClick={reset} style={{ marginLeft: 10 }}>
+        <button
+          onClick={reset}
+          style={{ ...btnStyle, marginLeft: 10, background: "#eee" }}
+        >
           Reset
         </button>
       </div>
 
-      {/* 🔗 智能内链（SEO核心升级） */}
+      {/* Related Cities */}
       <section style={{ marginTop: 50 }}>
         <h3>Related Cities</h3>
 
@@ -86,7 +97,8 @@ export default function Tasbih({ city }) {
                 padding: "6px 10px",
                 border: "1px solid #ddd",
                 borderRadius: 6,
-                textDecoration: "none"
+                textDecoration: "none",
+                fontSize: 13
               }}
             >
               {c}
@@ -96,7 +108,17 @@ export default function Tasbih({ city }) {
       </section>
 
     </div>
-  );
+
+  </Layout>
+);
+const btnStyle = {
+  padding: "12px 18px",
+  fontSize: 16,
+  border: "1px solid #ccc",
+  background: "#fff",
+  borderRadius: 8,
+  cursor: "pointer"
+};
 }
 
 /**
